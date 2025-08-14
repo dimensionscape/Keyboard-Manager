@@ -240,18 +240,23 @@ class KeyboardManager {
 	}
 
 	private static function _onKeyDown(e:KeyboardEvent) {
-		var keyCode:Int = e.keyCode;
-		_keysPressed.add(e.keyCode);
-
-		var callback:Function = _keysDown.get(keyCode);
-		if (callback != null) {
-			callback();
-		}
-
-		if (_hasKeyPressedCallback)
-			_keyPressedCallback(keyCode, e.charCode);
+	    var keyCode:Int = e.keyCode;
+	    var firstPress = !_keysPressed.contains(keyCode);
+	
+	    _keysPressed.add(keyCode);
+	
+	    if (firstPress) {
+	        var callback = _keysDown.get(keyCode);
+	        if (callback != null) {
+	            callback();
+	        }
+	    }
+	
+	    if (_hasKeyPressedCallback) {
+	        _keyPressedCallback(keyCode, e.charCode);
+	    }
 	}
-
+	
 	private static function _onKeyUp(e:KeyboardEvent) {
 		var keyCode:Int = e.keyCode;
 		_keysPressed.remove(keyCode);
