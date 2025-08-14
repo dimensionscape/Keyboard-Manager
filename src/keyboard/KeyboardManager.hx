@@ -3,8 +3,8 @@ import haxe.ds.IntMap;
 import openfl.errors.Error;
 import openfl.display.Stage;
 import openfl.events.KeyboardEvent;
-import bf.util.Set;
-import bf.input.keyboard.KeyCode;
+import util.Set;
+import keyboard.KeyCode;
 import openfl.utils.Function;
 
 /**
